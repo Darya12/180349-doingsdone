@@ -14,6 +14,47 @@ $date_deadline = null;
 
 // в эту переменную запишите кол-во дней до даты задачи
 $days_until_deadline = null;
+
+$projects = ["Все", "Входящие", "Учеба", "Работа", "Домашние дела", "Авто"];
+$tasks = [
+    [
+        'title' => 'Собеседование в IT компании',
+        'deadline' => '01.06.2018',
+        'category' => 'Работа',
+        'done' => 'false',
+    ],
+    [
+        'title' => 'Выполнить тестовове задание',
+        'deadline' => '25.05.2018',
+        'category' => 'Работа',
+        'done' => 'false',
+    ],
+    [
+        'title' => 'Сделать задание первого раздела',
+        'deadline' => '21.04.2018',
+        'category' => 'Учеба',
+        'done' => 'true',
+    ],
+    [
+        'title' => 'Встреча с другом',
+        'deadline' => '22.04.2018',
+        'category' => 'Входящие',
+        'done' => 'false',
+    ],
+    [
+        'title' => 'Купить корм для кота',
+        'deadline' => '',
+        'category' => 'Домашние дела',
+        'done' => 'false',
+    ],
+    [
+        'title' => 'Заказать пиццу',
+        'deadline' => '',
+        'category' => 'Домашние дела',
+        'done' => 'false',
+    ]
+]
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -57,13 +98,17 @@ $days_until_deadline = null;
                 <h2 class="content__side-heading">Проекты</h2>
 
                 <nav class="main-navigation">
+                    <?php foreach ($projects as $key => $value): ?>
                     <ul class="main-navigation__list">
                         <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#">Входящие</a>
-                            <span class="main-navigation__list-item-count">24</span>
+                            <a class="main-navigation__list-item-link" href="#"><?php print $value; ?></a>
+                            <span class="main-navigation__list-item-count">
+                            24
+                        </span>
                         </li>
+                    <?php endforeach; ?>
 
-                        <li class="main-navigation__list-item main-navigation__list-item--active">
+                        <!--<li class="main-navigation__list-item main-navigation__list-item--active">
                             <a class="main-navigation__list-item-link" href="#">Работа</a>
                             <span class="main-navigation__list-item-count">12</span>
                         </li>
@@ -81,7 +126,7 @@ $days_until_deadline = null;
                         <li class="main-navigation__list-item">
                             <a class="main-navigation__list-item-link" href="#">Авто</a>
                             <span class="main-navigation__list-item-count">0</span>
-                        </li>
+                        </li>-->
                     </ul>
                 </nav>
 

@@ -10,10 +10,10 @@ $task_deadline_ts = strtotime("+" . $days . " day midnight"); // метка вр
 $current_ts = strtotime('now midnight'); // текущая метка времени
 
 // запишите сюда дату выполнения задачи в формате дд.мм.гггг
-$date_deadline = null;
+$date_deadline = date ("d.m.Y", $task_deadline_ts);
 
 // в эту переменную запишите кол-во дней до даты задачи
-$days_until_deadline = null;
+$days_until_deadline = ($task_deadline_ts - $current_ts) / 86400;
 
 $projects = ["Все", "Входящие", "Учеба", "Работа", "Домашние дела", "Авто"];
 $tasks = [
@@ -21,40 +21,39 @@ $tasks = [
         'title' => 'Собеседование в IT компании',
         'deadline' => '01.06.2018',
         'category' => 'Работа',
-        'done' => 'false',
+        'status' => 'false',
     ],
     [
         'title' => 'Выполнить тестовове задание',
         'deadline' => '25.05.2018',
         'category' => 'Работа',
-        'done' => 'false',
+        'status' => 'false',
     ],
     [
         'title' => 'Сделать задание первого раздела',
         'deadline' => '21.04.2018',
         'category' => 'Учеба',
-        'done' => 'true',
+        'status' => 'true',
     ],
     [
         'title' => 'Встреча с другом',
         'deadline' => '22.04.2018',
         'category' => 'Входящие',
-        'done' => 'false',
+        'status' => 'false',
     ],
     [
         'title' => 'Купить корм для кота',
         'deadline' => '',
         'category' => 'Домашние дела',
-        'done' => 'false',
+        'status' => 'false',
     ],
     [
         'title' => 'Заказать пиццу',
         'deadline' => '',
         'category' => 'Домашние дела',
-        'done' => 'false',
+        'status' => 'false',
     ]
 ]
-
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -98,35 +97,15 @@ $tasks = [
                 <h2 class="content__side-heading">Проекты</h2>
 
                 <nav class="main-navigation">
-                    <?php foreach ($projects as $key => $value): ?>
                     <ul class="main-navigation__list">
-                        <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#"><?php print $value; ?></a>
+                        <?php foreach ($projects as $project): ?>
+                        <li class="main-navigation__list-item <?php if ($projects[0] == $project) echo 'main-navigation__list-item--active';?>">
+                            <a class="main-navigation__list-item-link" href="#"><?=$project?></a>
                             <span class="main-navigation__list-item-count">
                             24
                         </span>
-                        </li>
+                    </li>
                     <?php endforeach; ?>
-
-                        <!--<li class="main-navigation__list-item main-navigation__list-item--active">
-                            <a class="main-navigation__list-item-link" href="#">Работа</a>
-                            <span class="main-navigation__list-item-count">12</span>
-                        </li>
-
-                        <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#">Здоровье</a>
-                            <span class="main-navigation__list-item-count">3</span>
-                        </li>
-
-                        <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#">Домашние дела</a>
-                            <span class="main-navigation__list-item-count">7</span>
-                        </li>
-
-                        <li class="main-navigation__list-item">
-                            <a class="main-navigation__list-item-link" href="#">Авто</a>
-                            <span class="main-navigation__list-item-count">0</span>
-                        </li>-->
                     </ul>
                 </nav>
 
@@ -160,37 +139,22 @@ $tasks = [
                 </div>
 
                 <table class="tasks">
-<!--                    Добавьте класс task--important, если до выполнения задачи меньше дня-->
-                    <tr class="tasks__item task">
+<!--                    Добавьте класс task--important, если до выполнения задачи меньше дня--><?php foreach ($tasks as $task): ?>
+                    <tr class="tasks__item task <?php if ($task["status"] == "true") echo 'task--completed'; ?>">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden" type="checkbox">
-                                <a href="/"><span class="checkbox__text">Выполнить домашнее задание</span></a>
+                                <a href="/"><span class="checkbox__text"><?=$task["title"]?></span></a>
                             </label>
                         </td>
 
                         <td class="task__file">
                         </td>
 
-                        <td class="task__date"><!-- Здесь вывести содержимое переменной $date_deadline --></td>
+                        <td class="task__date"><?=$task["deadline"]?></td>
                     </tr>
 
-                    <!--показывать следующий тег <tr/>, если переменная равна единице-->
-                    <tr class="tasks__item task task--completed">
-                        <td class="task__select">
-                            <label class="checkbox task__checkbox">
-                                <input class="checkbox__input visually-hidden" type="checkbox" checked>
-                                <a href="/"><span class="checkbox__text">Сделать главную страницу Дела в порядке</span></a>
-                            </label>
-
-                        </td>
-
-                        <td class="task__file">
-                            <a class="download-link" href="#">Home.psd</a>
-                        </td>
-
-                        <td class="task__date"><!--выведите здесь дату выполнения задачи--></td>
-                    </tr>
+                <?php endforeach; ?>
                 </table>
             </main>
         </div>

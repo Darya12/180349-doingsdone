@@ -132,13 +132,15 @@ $tasks = [
                     <label class="checkbox">
                         <a href="/">
                             <!--добавить сюда аттрибут "checked", если переменная $show_complete_tasks равна единице-->
-                            <input class="checkbox__input visually-hidden" type="checkbox">
+                            <input class="checkbox__input visually-hidden" type="checkbox"
+                            <?php if ($show_complete_tasks == 1) echo "checked"; ?>
+                            >
                             <span class="checkbox__text">Показывать выполненные</span>
                         </a>
                     </label>
                 </div>
 
-                <table class="tasks">
+                <table class="tasks"> 
 <!--                    Добавьте класс task--important, если до выполнения задачи меньше дня--><?php foreach ($tasks as $task): ?>
                     <tr class="tasks__item task <?php if ($task["status"] == "true") echo 'task--completed'; ?>">
                         <td class="task__select">

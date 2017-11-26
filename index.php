@@ -139,7 +139,6 @@ $tasks = [
                         </a>
                     </label>
                 </div>
-
                 <table class="tasks"> 
 <!--                    Добавьте класс task--important, если до выполнения задачи меньше дня--><?php foreach ($tasks as $task): ?>
                     <tr class="tasks__item task <?php if ($task["status"] == "true") echo 'task--completed'; ?>">
@@ -152,7 +151,6 @@ $tasks = [
 
                         <td class="task__file">
                         </td>
-
                         <td class="task__date"><?=$task["deadline"]?></td>
                     </tr>
 

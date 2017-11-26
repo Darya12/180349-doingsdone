@@ -57,13 +57,17 @@ $tasks = [
     ]
 ];
 
-$page_content = includeTemplate('templates/index.php');
+$page_content = includeTemplate('templates/index.php',
+[
+    'tasks' => $tasks,
+]
+);
 $layout_content = includeTemplate('templates/layout.php',
 [
     'title' => 'Дела в порядке',
-    'projects' => '$projects',
-    'tasks' => '$tasks',
-    'content' => '$page_content'
+    'projects' => $projects,
+    'tasks' => $tasks,
+    'content' => $page_content
 ]
 );
 

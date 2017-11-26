@@ -164,7 +164,6 @@ function numOfTasks ($tasksList, $nameOfProjects) {
 
                         <td class="task__file">
                         </td>
-
                         <td class="task__date"><?=$task["deadline"]?></td>
                     </tr>
 

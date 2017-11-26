@@ -53,6 +53,21 @@ $tasks = [
         'category' => 'Домашние дела',
         'status' => 'false',
     ]
+];
+
+function numOfTasks ($tasksList, $nameOfProjects) {
+    if ($nameOfProjects == 'Все') {
+        return count ($tasksList);
+    };
+
+    $num = 0;
+    foreach ($tasksList as $value) {
+        if ($value['category'] == $nameOfProjects) {
+            $num++;
+        }
+    };
+    return $num;
+};
 ]
 ?>
 <!DOCTYPE html>
@@ -102,7 +117,7 @@ $tasks = [
                         <li class="main-navigation__list-item <?php if ($projects[0] == $project) echo 'main-navigation__list-item--active';?>">
                             <a class="main-navigation__list-item-link" href="#"><?=$project?></a>
                             <span class="main-navigation__list-item-count">
-                            24
+                            <?=numOfTasks($tasks, $project)?>
                         </span>
                     </li>
                     <?php endforeach; ?>
@@ -132,14 +147,13 @@ $tasks = [
                     <label class="checkbox">
                         <a href="/">
                             <!--добавить сюда аттрибут "checked", если переменная $show_complete_tasks равна единице-->
-                            <input class="checkbox__input visually-hidden" type="checkbox"
-                            <?php if ($show_complete_tasks == 1) echo "checked"; ?>
-                            >
+                            <input class="checkbox__input visually-hidden" type="checkbox">
                             <span class="checkbox__text">Показывать выполненные</span>
                         </a>
                     </label>
                 </div>
-                <table class="tasks"> 
+
+                <table class="tasks">
 <!--                    Добавьте класс task--important, если до выполнения задачи меньше дня--><?php foreach ($tasks as $task): ?>
                     <tr class="tasks__item task <?php if ($task["status"] == "true") echo 'task--completed'; ?>">
                         <td class="task__select">

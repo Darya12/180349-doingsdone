@@ -68,6 +68,7 @@ function numOfTasks ($tasksList, $nameOfProjects) {
     };
     return $num;
 };
+]
 ?>
 <!DOCTYPE html>
 <html lang="ru">

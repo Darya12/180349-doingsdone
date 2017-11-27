@@ -22,37 +22,37 @@ $tasks = [
     [
         'title' => 'Собеседование в IT компании',
         'deadline' => '01.06.2018',
-        'category' => 'Работа',
+        'category' => $projects [3],
         'status' => 'false',
     ],
     [
-        'title' => 'Выполнить тестовове задание',
+        'title' => 'Выполнить тестовое задание',
         'deadline' => '25.05.2018',
-        'category' => 'Работа',
+        'category' => $projects[3],
         'status' => 'false',
     ],
     [
         'title' => 'Сделать задание первого раздела',
         'deadline' => '21.04.2018',
-        'category' => 'Учеба',
+        'category' => $projects[2],
         'status' => 'true',
     ],
     [
         'title' => 'Встреча с другом',
         'deadline' => '22.04.2018',
-        'category' => 'Входящие',
+        'category' => $projects[1],
         'status' => 'false',
     ],
     [
         'title' => 'Купить корм для кота',
         'deadline' => '',
-        'category' => 'Домашние дела',
+        'category' => $projects[4],
         'status' => 'false',
     ],
     [
         'title' => 'Заказать пиццу',
         'deadline' => '',
-        'category' => 'Домашние дела',
+        'category' => $projects[4],
         'status' => 'false',
     ]
 ];
@@ -70,6 +70,20 @@ $layout_content = includeTemplate('templates/layout.php',
     'content' => $page_content
 ]
 );
-
 print $layout_content;
+//Работа со строкой запроса
+if (isset($_GET["project_id"])) {
+    $current_project = [];
+    $project_id = $_GET["project_id"];
+    foreach ($tasks as $value) {
+        if (($value["category"] == $projects[$project_id] || ($project_id == 0)) {
+            array_push($current_project, $value)
+        }
+    }
+}
+foreach ($projects as $key => $value) {
+    if ($_GET["project_id"] != $key) {
+        http_response_code(404);
+    }
+}
 ?>

@@ -43,7 +43,7 @@
                     <ul class="main-navigation__list">
                         <?php foreach ($projects as $project): ?>
                         <li class="main-navigation__list-item <?php if ($projects[0] == $project) echo 'main-navigation__list-item--active';?>">
-                            <a class="main-navigation__list-item-link" href="#"><?=$project?></a>
+                            <a class="main-navigation__list-item-link" href="<?="index.pxp?project_id="?>"><?=$project?></a>
                             <span class="main-navigation__list-item-count">
                             <?=numOfTasks($tasks, $project)?>
                         </span>

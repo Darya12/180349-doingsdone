@@ -41,9 +41,9 @@
 
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
-                        <?php foreach ($projects as $project): ?>
-                        <li class="main-navigation__list-item <?php if ($projects[0] == $project) echo 'main-navigation__list-item--active';?>">
-                            <a class="main-navigation__list-item-link" href="#"><?=$project?></a>
+                        <?php foreach ($projects as $id => $project): ?>
+                        <li class="main-navigation__list-item <?php if ($id == $_GET["project_id"]):?> main-navigation__list-item--active <?php endif?>">
+                            <a class="main-navigation__list-item-link" href="index.php?project_id=<?=$id?>"><?=$project?></a>
                             <span class="main-navigation__list-item-count">
                             <?=numOfTasks($tasks, $project)?>
                         </span>

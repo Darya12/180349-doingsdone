@@ -85,6 +85,15 @@ else {
     $current_project = $tasks;
 };
 
+//Работа с формами
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    if (isset($_GET["add"])) {
+        $task_add = includeTemplate('templates/form.php', [])
+    }
+};
+
+//Подключение шаблонов
 $page_content = includeTemplate('templates/index.php',
 [
     'tasks' => $current_project,

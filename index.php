@@ -57,9 +57,35 @@ $tasks = [
     ]
 ];
 
+//Работа со строкой запроса
+if (isset($_GET["project_id"])) {
+    $projectExist = false;
+    foreach ($projects as $key => $value) {
+        if ($_GET["project_id"] == $key) {
+            $projectExist = true;
+        }
+    }
+    if ($projectExist = false) {
+        http_response_code(404);
+    }
+}
+
+if ($projectExist) {
+    $current_project = [];
+    $project_id = $_GET["project_id"];
+    foreach ($tasks as $value) {
+        if (($value["category"] == $projects["$project_id"]) || ($project_id == 0)) {
+            array_push($current_project, $value);
+        }
+    }
+}
+else {
+    $current_project = $tasks;
+};
+
 $page_content = includeTemplate('templates/index.php',
 [
-    'tasks' => $tasks,
+    'tasks' => $current_project,
 ]
 );
 $layout_content = includeTemplate('templates/layout.php',
@@ -71,19 +97,4 @@ $layout_content = includeTemplate('templates/layout.php',
 ]
 );
 print $layout_content;
-//Работа со строкой запроса
-if (isset($_GET["project_id"])) {
-    $current_project = [];
-    $project_id = $_GET["project_id"];
-    foreach ($tasks as $value) {
-        if (($value["category"] == $projects[$project_id] || ($project_id == 0)) {
-            array_push($current_project, $value)
-        }
-    }
-}
-foreach ($projects as $key => $value) {
-    if ($_GET["project_id"] != $key) {
-        http_response_code(404);
-    }
-}
 ?>

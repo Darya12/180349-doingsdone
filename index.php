@@ -68,6 +68,7 @@ if (isset($_GET["project_id"])) {
     }
     if ($projectExist == false) {
         http_response_code(404);
+        exit;
     }
 }
 
@@ -93,7 +94,7 @@ $layout_content = includeTemplate('templates/layout.php',
 [
     'title' => 'Дела в порядке',
     'projects' => $projects,
-    'tasks' => $current_project,
+    'tasks' => $tasks,
     'content' => $page_content
 ]
 );

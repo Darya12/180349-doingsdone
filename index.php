@@ -89,7 +89,7 @@ else {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (isset($_GET["add"])) {
-        $task_add = includeTemplate('templates/form.php', [])
+        $task_add = includeTemplate('templates/form.php', []);
     }
 };
 

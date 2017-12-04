@@ -87,6 +87,7 @@ else {
 
 //Работа с формами
 if (isset($_GET["add"])) {
+    $add = true;
     $form_addtask = includeTemplate('templates/form.php', []);
 };
 
@@ -102,6 +103,7 @@ $layout_content = includeTemplate('templates/layout.php',
     'projects' => $projects,
     'tasks' => $tasks,
     'content' => $page_content,
+    'add' => $add,
     'form_addtask' => $form_addtask,
 ]
 );

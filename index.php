@@ -86,11 +86,8 @@ else {
 };
 
 //Работа с формами
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    if (isset($_GET["add"])) {
-        $task_add = includeTemplate('templates/form.php', []);
-    }
+if (isset($_GET["add"])) {
+    $form_addtask = includeTemplate('templates/form.php', []);
 };
 
 //Подключение шаблонов
@@ -104,8 +101,10 @@ $layout_content = includeTemplate('templates/layout.php',
     'title' => 'Дела в порядке',
     'projects' => $projects,
     'tasks' => $tasks,
-    'content' => $page_content
+    'content' => $page_content,
+    'form_addtask' => $form_addtask,
 ]
 );
+
 print $layout_content;
 ?>

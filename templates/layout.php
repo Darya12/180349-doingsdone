@@ -19,7 +19,7 @@
             </a>
 
             <div class="main-header__side">
-                <a class="main-header__side-item button button--plus" href="index.php?task_add=<?=$add?>">Добавить задачу</a>
+                <a class="main-header__side-item button button--plus" href="index.php?add=true">Добавить задачу</a>
 
                 <div class="main-header__side-item user-menu">
                     <div class="user-menu__image">

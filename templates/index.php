@@ -40,3 +40,6 @@
 
                 <?php endforeach; ?>
                 </table>
+                <?php if ($add = true) {
+                    print $form_addtask;
+                } ?>

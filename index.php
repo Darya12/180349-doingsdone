@@ -86,15 +86,16 @@ else {
 };
 
 //Работа с формами
-if (isset($_GET["add"])) {
+if (isset($_GET[add])) {
     $add = true;
-    $form_addtask = includeTemplate('templates/form.php', []);
 };
+$form_addtask = includeTemplate('templates/form.php', []);
 
 //Подключение шаблонов
 $page_content = includeTemplate('templates/index.php',
 [
     'tasks' => $current_project,
+    'add' => $add,
 ]
 );
 $layout_content = includeTemplate('templates/layout.php',
